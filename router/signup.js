@@ -1,17 +1,21 @@
 import { Router } from "express";
 import User from '../model/user.js';
+import bcrypt from 'bcryptjs'
+
 const router = new Router();
 
 router.post('/api/signup', async (req, res) => {
    console.log(req.body);
 
-   const { username, email, password, height,weight,bloodGroup} = req.body;
-
+   const { username, email, password, height, weight, bloodGroup } = req.body;
+   const salt =await bcrypt.genSalt(10);
+   const hashPassword =await  bcrypt.hash(password, salt);
+   
    try {
       const newUser = new User({
          username: username,
          email: email,
-         password: password,
+         password: hashPassword,
          height: height,
          weight: weight,
          bloodGroup: bloodGroup
