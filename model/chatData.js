@@ -6,8 +6,7 @@ const ChatDataSchema = new mongoose.Schema({
    answer: { type: String, required: true },
    year: { type: String, required: true, default: currentDate.getFullYear().toString() },
    month: { type: String, required: true, default: (currentDate.getMonth()+1).toString() },
-   day: { type: String, required: true, default: currentDate.getDay().toString() },
-   currentDate: { type: String, required: true, default: currentDate.getDate().toString() }
+   date: { type: String, required: true, default: currentDate.getDate().toString() }
 });
 
 const model = mongoose.model("ChatDataSchema", ChatDataSchema);
