@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import Routes from './router/routes.js'
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+import cors from 'cors';
 dotenv.config();
 
 const app = Express();
@@ -12,7 +13,22 @@ const PORT = process.env.PORT || 8080;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 console.log(__dirname);
 mongoose.connect(process.env.MONGODB_URL);
+// Define allowed origins
+const allowedOrigins = ['https://aayuga-front-end.vercel.app'];
 
+// Configure CORS options
+const corsOptions = {
+   origin: function (origin, callback) {
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+         callback(null, true);
+      } else {
+         callback(new Error('Not allowed by CORS'));
+      }
+   }
+};
+
+// Use CORS middleware
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(Routes);
 app.get('/', (req, res) => {
