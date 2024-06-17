@@ -15,6 +15,9 @@ mongoose.connect(process.env.MONGODB_URL);
 
 app.use(bodyParser.json());
 app.use(Routes);
+app.get('/', (req, res) => {
+   res.send({"Message":"Hello from Aayuga team!"})
+});
 
 app.listen(PORT, () => {
    console.log(`Listening on ${PORT}`);
