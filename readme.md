@@ -67,7 +67,7 @@ Welcome to our dynamic MERN (MongoDB, Express.js, React, Node.js) application, a
 
 2. **Set up environment variables:**
 
-### Create a .env file in the backend directory and add the following:
+ **Create a .env file in the backend directory and add the following:**
 
    ```Plain Text
    MONGO_URI=your_mongodb_uri
@@ -94,7 +94,7 @@ Welcome to our dynamic MERN (MongoDB, Express.js, React, Node.js) application, a
 
 2. **Setup proxy server**
 
-### Add this code to vite.config file
+   **Add this code to vite.config file:**
 
    ```Plain Text
    import { defineConfig } from 'vite'
@@ -144,7 +144,7 @@ We welcome contributions to improve our project. Feel free to submit issues and 
 
 ## Authors
 
-- [Dhvanik](https://github.com/PDhvanik) - Backend Development, Pose detection using tensorflow and ChatBot using OpenAI API
+- [Dhvanik Patel](https://github.com/PDhvanik) - Backend Development, Pose detection using tensorflow and ChatBot using OpenAI API
 
 - [Dev Patel](https://github.com/White-Devil04) - Frontend UI Development
 
