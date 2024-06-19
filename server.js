@@ -14,7 +14,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 console.log(__dirname);
 mongoose.connect(process.env.MONGODB_URL);
 // Define allowed origins
-const allowedOrigins = ['https://aayuga-front-end.vercel.app'];
+const allowedOrigins = ['https://aayuga-front-end.vercel.app','http://localhost:5173'];
 
 // Configure CORS options
 const corsOptions = {

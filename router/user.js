@@ -1,5 +1,5 @@
 import { Router } from "express";
-import User from '../model/user.js'
+import User from '../model/user.js';
 const router = new Router();
 
 router.get('/api/users/:user', async (req, res) => {
@@ -7,11 +7,11 @@ router.get('/api/users/:user', async (req, res) => {
 
    try {
       const user = await User.findOne({ username: username });
-      if (!user) return res.status(404).send({ status: 'error', message: 'User not found!' });
+      if (!user) return res.status(404).json({ status: 'error', message: 'User not found!' });
 
-      return res.status(201).send({ status: 'ok', message: 'User found!', userData: user });
+      return res.status(201).json({ status: 'ok', message: 'User found!', userData: user });
    } catch (err) {
-      return res.status(500).send({ status: 'error', message: 'Some error occurred!' });
+      return res.status(500).json({ status: 'error', message: 'Some error occurred!' });
    }
 });
 

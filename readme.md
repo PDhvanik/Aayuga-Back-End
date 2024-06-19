@@ -67,7 +67,7 @@ Welcome to our dynamic MERN (MongoDB, Express.js, React, Node.js) application, a
 
 2. **Set up environment variables:**
 
- **Create a .env file in the backend directory and add the following:**
+   **Create a .env file in the backend directory and add the following:**
 
    ```Plain Text
    MONGO_URI=your_mongodb_uri

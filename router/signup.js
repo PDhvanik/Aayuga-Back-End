@@ -8,13 +8,13 @@ dotenv.config();
 const router = new Router();
 
 router.post('/api/signup', async (req, res) => {
-   console.log(req.body);
-
    const { username, email, password, height, weight, bloodGroup } = req.body.formData;
+
    const salt = await bcrypt.genSalt(10);
    const hashPassword = await bcrypt.hash(password, salt);
+   
    if (!(username && email && password && height && weight && bloodGroup)) {
-      return res.status(400).send({ message: 'Fill all the details' });
+      return res.status(400).json({ message: 'Fill all the details' });
    }
    try {
       const newUser = new User({
@@ -37,13 +37,12 @@ router.post('/api/signup', async (req, res) => {
             expiresIn: "2h"
          }
       );
-      console.log('User created successfully: ', response)
-      return res.status(201).json({ status: 'Created!' ,token:token});
+      return res.status(201).json({ message: 'User created successfully!' ,token:token,username: username});
    } catch (err) {
       if (err.code === 11000) {
          err.message = 'Username or email already exists!';
       }
-      return res.status(400).json({ status: 'error', error: err.message });
+      return res.status(400).json({ status: 'error', message: err.message });
    }
 });
 
