@@ -16,7 +16,7 @@ Welcome to our dynamic MERN (MongoDB, Express.js, React, Node.js) application, a
 
 - **User Authentication:** Secure user authentication using JSON Web Tokens (JWT).
 
-- **AI Chatbot Integration:** Integrated ChatGPT API for enhanced user interaction.
+- **AI Chatbot Integration:** Integrated Google Gemini AI for enhanced user interaction.
 
 ## Technologies Used
 
@@ -32,7 +32,7 @@ Welcome to our dynamic MERN (MongoDB, Express.js, React, Node.js) application, a
 
 - **JSON Web Tokens (JWT):** Standard for secure user authentication.
 
-- **ChatGPT API:** OpenAI’s API for incorporating AI chatbot functionality.
+- **Google Gemini AI:** Google's AI API for incorporating AI chatbot functionality.
 
 - **Pose Detection API:** API for detecting and analyzing body poses in real-time.
 
@@ -50,7 +50,7 @@ Welcome to our dynamic MERN (MongoDB, Express.js, React, Node.js) application, a
 
 - **Security Implementation:** Added password hashing with bcrypt and JWT-based authentication.
 
-- **AI Integration:** Developed a chatbot using ChatGPT API to enrich user interactions.
+- **AI Integration:** Developed a chatbot using Google Gemini AI to enrich user interactions.
 
 - **Frontend Integration:** Combined React frontend with Express.js backend to create a cohesive user experience.
 
@@ -69,18 +69,26 @@ Welcome to our dynamic MERN (MongoDB, Express.js, React, Node.js) application, a
 
    **Create a .env file in the backend directory and add the following:**
 
-   ```Plain Text
-   MONGO_URI=your_mongodb_uri
-   JWT_SECRET=your_jwt_secret
-   CHATGPT_API_KEY=your_openai_api_key
-   PORT=your_port
+   ```env
+   # Server Configuration
+   PORT=8080
+   NODE_ENV=development
+
+   # MongoDB Configuration
+   MONGODB_URL=mongodb://localhost:27017/aayuga_chatbot
+
+   # Google Gemini AI Configuration
+   GEMINI_API_KEY=your_gemini_api_key_here
+
+   # JWT Configuration (for authentication)
+   JWT_SECRET=your_jwt_secret_here
    ```
 
 3. **Install dependencies and Start server:**
 
    ```bash
    npm install
-   npm run dev
+   npm start
    ```
 
 ### Frontend Setup
@@ -96,24 +104,24 @@ Welcome to our dynamic MERN (MongoDB, Express.js, React, Node.js) application, a
 
    **Add this code to vite.config file:**
 
-   ```Plain Text
-   import { defineConfig } from 'vite'
-   import react from '@vitejs/plugin-react'
+   ```javascript
+   import { defineConfig } from "vite";
+   import react from "@vitejs/plugin-react";
 
    // https://vitejs.dev/config/
    export default defineConfig({
-      server: {
-         proxy: {
-            '/api': 'http://localhost:8080'
-         }
-      },
-      //Other configuration as per requirements
+     server: {
+       proxy: {
+         "/api": "http://localhost:8080",
+       },
+     },
+     //Other configuration as per requirements
    });
    ```
 
 3. **Update URL.js File**
 
-   ```Plain Text
+   ```javascript
    export default const URL = '';
    ```
 
@@ -124,9 +132,25 @@ Welcome to our dynamic MERN (MongoDB, Express.js, React, Node.js) application, a
    npm run dev
    ```
 
+## API Endpoints
+
+### Chatbot API
+
+- `POST /api/chat` - Send a message to the AI chatbot
+
+  - Body: `{ "prompt": "your message", "username": "user123" }`
+  - Response: `{ "status": "success", "message": "AI response", "timestamp": "..." }`
+
+- `GET /api/history/:user` - Get chat history for a user
+
+  - Response: `{ "status": "success", "data": [...], "count": 5 }`
+
+- `DELETE /api/history/:user` - Delete chat history for a user
+  - Response: `{ "status": "success", "deletedCount": 10 }`
+
 ## Access the Application
 
-Open your browser and navigate to http://localhost:5173 to view the application. In further case backend server setup is possible through .env file.
+Open your browser and navigate to http://localhost:5173 to view the application. The backend server will be running on http://localhost:8080.
 
 ## Usage
 
@@ -138,13 +162,22 @@ Open your browser and navigate to http://localhost:5173 to view the application.
 
 - **Accuracy Measurements**: Obtain accurate measurements of poses for applications in fitness and physical therapy.
 
+## Recent Improvements
+
+- **Fixed Gemini AI Integration**: Corrected API usage and response handling
+- **Enhanced Security**: Added input sanitization and validation
+- **Improved Error Handling**: Better error messages and logging
+- **Database Optimization**: Added timestamps and removed problematic unique constraints
+- **API Consistency**: Standardized response formats across all endpoints
+- **Performance**: Added request limits and better CORS configuration
+
 ## Contributing
 
 We welcome contributions to improve our project. Feel free to submit issues and pull requests to the respective repositories.
 
 ## Authors
 
-- [Dhvanik Patel](https://github.com/PDhvanik) - Backend Development, Pose detection using tensorflow and ChatBot using OpenAI API
+- [Dhvanik Patel](https://github.com/PDhvanik) - Backend Development, Pose detection using tensorflow and ChatBot using Google Gemini AI
 
 - [Dev Patel](https://github.com/White-Devil04) - Frontend UI Development
 
@@ -154,6 +187,6 @@ This project is licensed under the MIT License - see the LICENSE file in the res
 
 ## Acknowledgments
 
-- Special thanks to the OpenAI team for the ChatGPT API.
+- Special thanks to the Google AI team for the Gemini API.
 
 - Gratitude to the LinkedIn community for support and feedback.
